@@ -14,6 +14,17 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (isFormOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isFormOpen])
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
@@ -61,19 +72,19 @@ export default function Navbar() {
       {/* Join Form Modal */}
       <AnimatePresence>
         {isFormOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 overflow-y-auto">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsFormOpen(false)}
-              className="absolute inset-0 bg-bg/80 backdrop-blur-sm"
+              className="fixed inset-0 bg-bg/80 backdrop-blur-sm"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-md bg-zinc-900 border border-line p-8 shadow-2xl backdrop-blur-md rounded-xl"
+              className="relative w-full max-w-md bg-zinc-900 border border-line p-8 shadow-2xl backdrop-blur-md rounded-xl my-auto"
             >
               <button 
                 onClick={() => setIsFormOpen(false)}
