@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  /* Ironclad Dark & Fiery palette */
+  --color-bg: #050505;
+  --color-surface: #111111;
+  --color-surface-2: #1a1a1a;
+  --color-line: #262626;
+  --color-steel: #8a8a8a;
+  --color-chalk: #ffffff;
+  --color-accent: #FF2A00; /* Fiery Red/Orange */
+  --color-accent-dim: #FF6A00; /* Vibrant Orange */
+  --color-muted: #b3b3b3;
+
+  /* Fonts */
+  --font-display: 'Roboto', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-chalk);
+  font-family: var(--font-body);
+}
+
+/* Diagonal tape-line texture used behind the hero */
+.hero-texture {
+  background-image: repeating-linear-gradient(
+    115deg,
+    transparent,
+    transparent 68px,
+    rgba(255, 78, 31, 0.035) 68px,
+    rgba(255, 78, 31, 0.035) 70px
+  );
+}
+
+/* Outlined text effect for hero headline accent word */
+.text-outline {
+  -webkit-text-stroke: 1.5px var(--color-chalk);
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
